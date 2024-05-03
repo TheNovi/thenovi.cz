@@ -1,8 +1,8 @@
 <script lang="ts">
+	import Header from '$lib/Header.svelte';
 	import '../app.pcss';
-	// import type { LayoutData } from './$types';
-
-	// export let data: LayoutData;
+	let { children, data } = $props();
 </script>
 
-<slot />
+<Header title="" />
+{@render children()}

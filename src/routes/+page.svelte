@@ -1,7 +1,8 @@
-<svelte:head>
-	<title>TheNovi</title>
-</svelte:head>
+<script lang="ts">
+	import Header from '$lib/Header.svelte';
+</script>
 
+<Header title="Home" />
 <h1>TheNovi</h1>
 
 <style lang="postcss">
