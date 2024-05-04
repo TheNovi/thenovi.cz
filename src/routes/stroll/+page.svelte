@@ -28,7 +28,7 @@
 {#snippet button()}
 	<button type="button" disabled={picking} class="size-fit bg-slate-600 m-2" onclick={getRandomPlace}>
 		{#if !place}
-			Vylosuj náhodné místo v čechách
+			Vylosuj náhodné místo v Čechách
 		{:else}
 			Nelíbí se? Zkus štěstí znovu!
 		{/if}
