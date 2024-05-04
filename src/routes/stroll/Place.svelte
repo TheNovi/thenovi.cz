@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { Places } from '$lib/schema/places';
-	type Place = Omit<Places, 'id'>;
 
 	const { place, picking = false }: { place: Omit<Places, 'id'> | undefined; picking: boolean } = $props();
+	const pickingText = 'Losuji...';
 	// $effect(() => console.log(place));
 </script>
 
@@ -18,10 +18,13 @@
 {/snippet}
 
 {#if picking}
-	<!-- TODO Some anim -->
-	Losuji...
+	<span>
+		{#each pickingText as t, i}
+			<span class="picking" style="animation-delay: {i / 5}s;">{t}</span>
+		{/each}
+	</span>
 {:else if place}
-	<div class="flex flex-col items-center mb-5">
+	<div class="place flex flex-col items-center mb-5">
 		<h2 class="m-10">{place.name}</h2>
 		<ul class="flex row gap-5">
 			{@render link('G', 'https://google.cz/search?q=', place.name)}
@@ -30,3 +33,28 @@
 		</ul>
 	</div>
 {/if}
+
+<style lang="postcss">
+	/*prettier-ignore */
+	@keyframes appear {
+		0% { opacity: 0; }
+		100% { opacity: 1; }
+	}
+	/*prettier-ignore */
+	@keyframes blink {
+		0% { opacity: 0.2; }
+		100% { opacity: 1; }
+	}
+	.picking {
+		animation: blink 1s both 0s infinite alternate;
+	}
+
+	.place h2 {
+		opacity: initial;
+		animation: appear 5s;
+	}
+	.place * {
+		opacity: 0;
+		animation: appear 2s forwards 1s;
+	}
+</style>
