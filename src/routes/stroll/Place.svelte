@@ -6,12 +6,11 @@
 	// $effect(() => console.log(place));
 </script>
 
-{#snippet link(name: string, prefix: string, link: string | null)}
-	<!-- TODO Icons -->
+{#snippet link(title: string,  prefix: string, link: string | null, ico:string)}
 	{#if link}
 		<li>
-			<a href={prefix + link} target="_blank" rel="noopener noreferrer">
-				{name}
+			<a href={prefix + link} {title} target="_blank" rel="noopener noreferrer">
+				<img src={ico ? ico : `//www.google.com/s2/favicons?domain=${prefix}&sz=20`} class="size-[20px]" alt={title} />
 			</a>
 		</li>
 	{/if}
@@ -25,11 +24,16 @@
 	</span>
 {:else if place}
 	<div class="place flex flex-col items-center mb-5">
-		<h2 class="m-10">{place.name}</h2>
-		<ul class="flex row gap-5">
-			{@render link('G', 'https://google.cz/search?q=', place.name)}
-			{@render link('MAPS', 'https://www.google.com/maps/search/', place.name)}
-			{@render link('KZN', 'https://kudyznudy.cz/', place.link_KZN)}
+		<h2 class="mt-8 mb-1">{place.name}</h2>
+		<ul class="flex row gap-2">
+			{@render link('Google', '//google.cz/search?q=', place.name, '')}
+			{@render link(
+				'Google Maps',
+				'//www.google.com/maps/search/',
+				place.name,
+				'//www.google.com/images/branding/product/ico/maps15_bnuw3a_32dp.ico'
+			)}
+			{@render link('Kudy z Nudy', '//kudyznudy.cz/', place.link_KZN, '')}
 		</ul>
 	</div>
 {/if}
