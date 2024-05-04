@@ -27,7 +27,11 @@
 
 {#snippet button()}
 	<button type="button" disabled={picking} class="size-fit bg-slate-600 m-2" onclick={getRandomPlace}>
-		Vylosuj náhodné místo v čechách
+		{#if !place}
+			Vylosuj náhodné místo v čechách
+		{:else}
+			Nelíbí se? Zkus štěstí znovu!
+		{/if}
 	</button>
 {/snippet}
 {#snippet link(name: string, prefix: string, link: string | null)}
@@ -60,7 +64,7 @@
 
 {#if !place}
 	<div class="flex flex-col h-screen items-center justify-center text-center">
-		<span> Nevíš kam zrovna jet? Stačí kliknout na tlačítko a hned budeš vědět. </span>
+		Nevíš kam zrovna jet? Stačí kliknout na tlačítko a hned budeš vědět. (Toto je pouze velice raná verze)
 		{@render button()}
 		{#if picking}
 			<!-- TODO Some anim -->
