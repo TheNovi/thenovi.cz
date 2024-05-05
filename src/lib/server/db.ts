@@ -1,7 +1,7 @@
 import { DB_TOKEN, DB_URL } from '$env/static/private';
 import { createClient } from '@libsql/client';
 import { drizzle } from 'drizzle-orm/libsql';
-import * as schema from '../schema/places'; //TODO Better
+import * as schema from '../schema/places'; //TODO Better db scheme imports
 
 const client = createClient({
 	url: DB_URL,

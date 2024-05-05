@@ -9,6 +9,6 @@ export const GET: RequestHandler = async () => {
 		.select({ name: places.name, link_KZN: places.link_KZN })
 		.from(places)
 		.where(sql`rowid = abs(random()) % (SELECT max(rowid) FROM places) + 1`);
-	//TODO Fix missing rowids (or just make sure there aren't any in the db lol)
+	// Not working on missing rowids and ids(or just make sure there aren't any in the db lol)
 	return json(p ? p[0] : {});
 };

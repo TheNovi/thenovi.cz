@@ -30,6 +30,6 @@ export const load: PageServerLoad = async () => {
 		.select({ name: places.name, link_KZN: places.link_KZN })
 		.from(places)
 		.where(sql`rowid = ${i} % (SELECT max(rowid) FROM places) + 1`);
-	//TODO Fix missing rowids and ids (or just make sure there aren't any in the db lol)
+	//Not working on missing rowids and ids (or just make sure there aren't any in the db lol)
 	return { week: p[0] };
 };

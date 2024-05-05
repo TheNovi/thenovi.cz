@@ -39,23 +39,13 @@
 {/if}
 
 <style lang="postcss">
-	/*prettier-ignore */
-	@keyframes appear {
-		0% { opacity: 0; }
-		100% { opacity: 1; }
-	}
-	/*prettier-ignore */
-	@keyframes blink {
-		0% { opacity: 0.2; }
-		100% { opacity: 1; }
-	}
 	.picking {
 		animation: blink 1s both 0s infinite alternate;
 	}
 
 	.place h2 {
 		opacity: initial;
-		animation: appear 5s;
+		animation: blink 5s;
 	}
 	.place * {
 		opacity: 0;

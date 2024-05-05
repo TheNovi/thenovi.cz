@@ -31,10 +31,11 @@
 
 {#snippet button()}
 	<button type="button" disabled={picking} class="size-fit bg-slate-600 m-2" onclick={() => getRandomPlace()}>
+		Nevyhovuje?
 		{#if !place}
-			Nelíbí se? Zkus si vylosovat vlastní!
+			Zkus si vylosovat vlastní!
 		{:else}
-			Nelíbí se? Zkus štěstí znovu!
+			Zkus štěstí znovu!
 		{/if}
 	</button>
 {/snippet}
