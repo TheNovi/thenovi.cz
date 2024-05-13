@@ -24,16 +24,17 @@
 	</span>
 {:else if place}
 	<div class="place flex flex-col items-center mb-5">
-		<h2 class="mt-8 mb-1">{place.name}</h2>
+		<h2 class="mt-8">{place.name}</h2>
+		<span class="mb-1">{place.region}</span>
 		<ul class="flex row gap-2">
 			{@render link('Google', '//google.cz/search?q=', place.name, '')}
+			{@render link('Turistické známky', '//turisticke-znamky.cz/znamky/', place.name + '-c' + place.tz, '')}
 			{@render link(
 				'Google Maps',
 				'//www.google.com/maps/search/',
 				place.name,
 				'//www.google.com/images/branding/product/ico/maps15_bnuw3a_32dp.ico'
 			)}
-			{@render link('Kudy z Nudy', '//kudyznudy.cz/', place.link_KZN, '')}
 		</ul>
 	</div>
 {/if}

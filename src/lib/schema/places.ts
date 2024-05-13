@@ -3,8 +3,9 @@ import { text, integer, sqliteTable } from 'drizzle-orm/sqlite-core';
 
 export const places = sqliteTable('places', {
 	id: integer('id').primaryKey(),
-	name: text('name').unique().notNull().default(''),
-	link_KZN: text('link_KZN'),
+	name: text('name').default('').notNull(),
+	region: text('region').default('').notNull(),
+	tz: integer('tz'),
 	// created: integer('created')
 	// 	.notNull()
 	// 	.default(sql`CURRENT_TIMESTAMP`),

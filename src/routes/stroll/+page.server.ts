@@ -18,16 +18,16 @@ function r(v: number) {
 			createHash('SHA256')
 				.update(v + '')
 				.digest('hex')
-				.slice(0, 10), //This limits max number (can be changed if needed)
+				.slice(0, 4), //This limits max number (can be changed if needed)
 		16
 	);
 }
 
 export const load: PageServerLoad = async () => {
 	const i = r(seed());
-	// console.log(i);
+	console.log(i);
 	let p = await db
-		.select({ name: places.name, link_KZN: places.link_KZN })
+		.select({ name: places.name, region: places.region, tz: places.tz })
 		.from(places)
 		.where(sql`rowid = ${i} % (SELECT max(rowid) FROM places) + 1`);
 	//Not working on missing rowids and ids (or just make sure there aren't any in the db lol)
