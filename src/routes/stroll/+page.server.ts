@@ -25,7 +25,6 @@ function r(v: number) {
 
 export const load: PageServerLoad = async () => {
 	const i = r(seed());
-	console.log(i);
 	let p = await db
 		.select({ name: places.name, region: places.region, tz: places.tz })
 		.from(places)

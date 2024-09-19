@@ -1,8 +1,9 @@
 import type { Config } from 'drizzle-kit';
 
-console.log(process.env.DB_URL);
+// console.log(process.env.DB_URL);
 
 export default {
+	dialect: 'sqlite',
 	schema: './src/lib/schema/*',
 	out: './drizzle',
 	driver: 'turso',

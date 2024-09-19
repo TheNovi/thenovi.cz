@@ -6,11 +6,16 @@
 	// $effect(() => console.log(place));
 </script>
 
-{#snippet link(title: string,  prefix: string, link: string | null, ico:string)}
+{#snippet link(title: string, prefix: string, link: string | null, ico: string)}
 	{#if link}
 		<li>
 			<a href={prefix + link} {title} target="_blank" rel="noopener noreferrer">
-				<img src={ico ? ico : `//www.google.com/s2/favicons?domain=${prefix}&sz=20`} class="size-[20px]" alt={title} />
+				<!-- <img src={ico ? ico : `//www.google.com/s2/favicons?domain=${prefix}&sz=20`} class="size-[20px]" alt={title} /> -->
+				<img
+					src={ico ? ico : `https://www.google.com/s2/favicons?domain=${prefix}&sz=20`}
+					class="size-[20px]"
+					alt={title}
+				/>
 			</a>
 		</li>
 	{/if}
