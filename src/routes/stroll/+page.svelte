@@ -3,6 +3,7 @@
 	import type { Places } from '$lib/schema/places';
 	import Place from './Place.svelte';
 	import { random, wait } from '$lib/util';
+	import WeeklyStrollCountdown from './WeeklyStrollCountdown.svelte';
 
 	let { data } = $props();
 
@@ -28,22 +29,22 @@
 </script>
 
 <Header title={'Stroll'} />
+<div class="flex flex-col items-center text-center mt-2">
+	Chceš na výlet, ale nevíš kam? Zde najdeš každý týden nový tip kam vyrazit. A pokud daná lokace zrovna nebude
+	vyhovovat, tak si jednoduše vylosuješ novou.
+	<div class="text-xs m-2">
+		Další místo bude vylosováno za: <div><WeeklyStrollCountdown /></div>
+	</div>
+	<!-- Week stroll -->
+	<Place place={data.week} picking={false} />
 
-{#snippet button()}
 	<button type="button" disabled={picking} class="size-fit bg-slate-600 m-2" onclick={() => getRandomPlace()}>
-		Nevyhovuje?
 		{#if !place}
-			Zkus si vylosovat vlastní!
+			Nebo si vylosovuj vlastní!
 		{:else}
 			Zkus štěstí znovu!
 		{/if}
 	</button>
-{/snippet}
-<div class="flex flex-col items-center text-center mt-2">
-	Chceš na výlet, ale nevíš kam? Zde najdeš každý týden nový tip kam vyrazit. A pokud daná lokace zrovna nebude
-	vyhovovat, tak si jednoduše vylosuješ novou.
-	<i>(Toto je velice raná verze aplikace, očekávej chyby)</i>
-	<Place place={data.week} picking={false} />
-	{@render button()}
+	<!-- User stroll -->
 	<Place {place} {picking} />
 </div>
