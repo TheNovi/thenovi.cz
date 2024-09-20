@@ -5,14 +5,16 @@ import type { PageServerLoad } from './$types';
 import { createHash } from 'crypto';
 
 function seed() {
+	//Never underestimate timezones, they will break you
 	const d = new Date();
-	// const d = new Date(2024, 10, 5);
-	const jan = new Date(d.getUTCFullYear(), 0, 1);
+	// const d = new Date(Date.UTC(2025, 0, 6));
+	const jan = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
 	const week = Math.ceil(((d.getTime() - jan.getTime()) / 86400000 + jan.getUTCDay()) / 7);
 	return +`${week}${d.getUTCFullYear() % 100}`;
 }
 
 function r(v: number) {
+	// console.log(v);
 	return parseInt(
 		'0x' +
 			createHash('SHA256')
