@@ -15,7 +15,8 @@
 
 	function getNextWeekDate() {
 		let n = new Date();
-		n.setUTCDate(n.getUTCDate() + 7 + 1 - n.getUTCDay()); //Next Monday
+		n.setUTCDate(n.getUTCDate() + 7 - ((6 + n.getUTCDay()) % 7)); //Next Monday (my solution)
+		// n.setUTCDate(n.getUTCDate() + ((7 - n.getUTCDay()) % 7) + 1); //Next Monday (from internet)
 		n.setUTCHours(0, 0, 0, 0);
 		return n.getTime();
 	}

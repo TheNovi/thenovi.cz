@@ -4,13 +4,26 @@ import { sql } from 'drizzle-orm';
 import type { PageServerLoad } from './$types';
 import { createHash } from 'crypto';
 
-function seed() {
-	//Never underestimate timezones, they will break you
+//Never underestimate timezones, they will break you
+/**
+ * @deprecated
+ * {weekOfTheYear}{Year}
+ */
+function seedWY() {
 	const d = new Date();
-	// const d = new Date(Date.UTC(2025, 0, 6));
 	const jan = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
 	const week = Math.ceil(((d.getTime() - jan.getTime()) / 86400000 + jan.getUTCDay()) / 7);
 	return +`${week}${d.getUTCFullYear() % 100}`;
+}
+/**
+ * {weekFrom1970-1-1}
+ */
+function seedEpochWeek() {
+	//TODO Auto tests!!!
+	const d = new Date(); //Can be local, only getTime is used
+	// const s = (6 + new Date(0).getUTCDay()) % 7; //Get day of 1970-1-1, but start week on monday
+	const s = 3; //Same as line above
+	return Math.ceil((d.getTime() / 86400000 + s) / 7);
 }
 
 function r(v: number) {
@@ -27,7 +40,7 @@ function r(v: number) {
 
 //TODO As endpoint (for 3rd party sites)
 export const load: PageServerLoad = async () => {
-	const i = r(seed());
+	const i = r(seedEpochWeek());
 	let p = await db
 		.select({ name: places.name, region: places.region, tz: places.tz })
 		.from(places)
