@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Places } from '$lib/schema/places';
+	import type { Places } from '$lib/server/db/schema';
 
 	const { place, picking = false }: { place: Omit<Places, 'id'> | undefined; picking: boolean } = $props();
 	const pickingText = 'Losuji...';
@@ -28,10 +28,10 @@
 		{/each}
 	</span>
 {:else if place}
-	<div class="place flex flex-col items-center mb-5">
+	<div class="place mb-5 flex flex-col items-center">
 		<h2 class="mt-8">{place.name}</h2>
 		<span class="mb-1">{place.region}</span>
-		<ul class="flex row gap-2">
+		<ul class="row flex gap-2">
 			{@render link('Google', '//google.cz/search?q=', place.name, '')}
 			{@render link('Turistické známky', '//turisticke-znamky.cz/znamky/', place.name + '-c' + place.tz, '')}
 			{@render link(

@@ -1,4 +1,4 @@
-import { places } from '$lib/schema/places';
+import { places } from '$lib/server/db/schema';
 import { db } from '$lib/server/db';
 import { sql } from 'drizzle-orm';
 import type { PageServerLoad } from './$types';

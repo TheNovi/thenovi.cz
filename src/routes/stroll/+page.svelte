@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Header from '$lib/Header.svelte';
-	import type { Places } from '$lib/schema/places';
+	import type { Places } from '$lib/server/db/schema';
 	import Place from './Place.svelte';
 	import { random, wait } from '$lib/util';
 	import WeeklyStrollCountdown from './WeeklyStrollCountdown.svelte';
@@ -29,16 +29,16 @@
 </script>
 
 <Header title={'Stroll'} />
-<div class="flex flex-col items-center text-center mt-2">
+<div class="mt-2 flex flex-col items-center text-center">
 	Chceš na výlet, ale nevíš kam? Zde najdeš každý týden nový tip kam vyrazit. A pokud daná lokace zrovna nebude
 	vyhovovat, tak si jednoduše vylosuješ novou.
-	<div class="text-xs m-2">
+	<div class="m-2 text-xs">
 		Další místo bude vylosováno za: <div><WeeklyStrollCountdown /></div>
 	</div>
 	<!-- Week stroll -->
 	<Place place={data.week} picking={false} />
 
-	<button type="button" disabled={picking} class="size-fit bg-slate-600 m-2" onclick={() => getRandomPlace()}>
+	<button type="button" disabled={picking} class="m-2 size-fit bg-slate-600" onclick={() => getRandomPlace()}>
 		{#if !place}
 			Nebo si vylosovuj vlastní!
 		{:else}

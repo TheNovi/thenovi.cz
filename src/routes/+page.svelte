@@ -4,8 +4,8 @@
 
 <Header title="Home" />
 
-<div class="fixed inset-0 size-fit m-auto text-center">
-	<h1 class="text-white text-6xl">
+<div class="fixed inset-0 m-auto size-fit text-center">
+	<h1 class="text-6xl text-white">
 		<span id="the">The</span><span id="novi">Novi</span>
 	</h1>
 	<span id="shruge">¯\_(ツ)_/¯</span>
@@ -24,7 +24,7 @@
 	}
 
 	#shruge {
-		@apply block my-2 opacity-0;
+		@apply my-2 block opacity-0;
 		animation: appear 5s forwards 3s;
 	}
 
