@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Header from '$lib/Header.svelte';
 	import type { Places } from '$lib/server/db/schema';
-	import Place from './Place.svelte';
 	import { random, wait } from '$lib/util';
+	import Place from './Place.svelte';
 	import WeeklyStrollCountdown from './WeeklyStrollCountdown.svelte';
 
 	let { data } = $props();
